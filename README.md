@@ -1,4 +1,3 @@
-![Cafezinho Screenshot](public/img/cafezinhoReadme.png)
 ## Installation
 
 1. Clone repo

@@ -1,0 +1,23 @@
+body{
+  padding-top:80px;
+  word-wrap:break-word;
+  background-color: green;
+}
+
+.text-center {
+  background-color: red;
+}
+
+img{
+  height: 200px;
+  margin:0;
+  background-color: green;
+}
+
+.jumbotron {
+  overflow: hidden;
+}
+
+.cashierContainer {
+  margin-left: 30%;
+}
