@@ -19,8 +19,6 @@
     </div>
 
     <div class="row">
-
-              <!-- LOCAL INFORMATION -->
               
       <div class="col-sm-6">
         <div class="well">
@@ -37,10 +35,9 @@
             <% } else { %>
               <a href="/connect-local" class="btn btn-default">Connect Local</a>
               <% } %>
-
       </div>
       <div class="col-sm-6">
-        <h3>Orders</h3>
+        <h3>Pizza Orders</h3>
         <ul class="orders">
           <% for(var i=0; i<orders.length; i++) {%>
             <li class="order">
@@ -56,7 +53,31 @@
         </ul>
         
       </div>
-
+      <section class="orderContainer">
+        <div class="orderTitle">
+          <h2>Welcome: Input Order Below</h2>
+        </div>
+    
+        <form class="orderTitle" action="/messages" method="POST">
+          <input type="text" class='name2' value="" placeholder="customer name" name="name">
+          <label for="pepperoni">Pepperoni</label>
+          <input type="radio" name="order" id="pepperoni" value="Pepperoni">
+          <label for="cheese">Cheese</label>
+          <input type="radio" name="order" id="cheese" value="Cheese">
+          <label for="pineapple">Pineapple</label>
+          <input type="radio" name="order" id="pineapple" value="Pineapple">
+          <label for="hamburger">Hamburger</label>
+          <input type="radio" name="order" id="hamburger" value="Hamburger">
+          <label for="vegan">Vegan</label>
+          <input type="radio" name="order" id="vegan" value="Vegan">
+          <select class="Size" name="orderSize">
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
       <script src="main.js"></script>
 
 </body>
