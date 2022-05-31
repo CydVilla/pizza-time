@@ -1,3 +1,6 @@
+const ObjectID = require('mongodb').ObjectID
+
+
 module.exports = function(app, passport, db) {
 
     app.get('/', function(req, res) {
@@ -7,7 +10,7 @@ module.exports = function(app, passport, db) {
       app.get('/profile', isLoggedIn, function(req, res) {
         db.collection('messages').find().toArray((err, result) => {
           if (err) return console.log(err)
-          console.log(req.user);
+          console.log(result)
           res.render('profile.ejs', {
             user : req.user,
             orders: result
@@ -30,14 +33,15 @@ module.exports = function(app, passport, db) {
     })
 
     app.put('/messages', (req, res) => {
+      console.log(req.body, 'hi')
       db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+      .findOneAndUpdate({_id: ObjectID(req.body._id)}, {
         $set: {
-          thumbUp:req.body.thumbUp + 1
+          order:req.body.order 
         }
       }, {
         sort: {_id: -1},
-        upsert: true
+        upsert: false
       }, (err, result) => {
         if (err) return res.send(err)
         res.send(result)
@@ -45,7 +49,7 @@ module.exports = function(app, passport, db) {
     })
 
     app.delete('/messages', (req, res) => {
-      db.collection('messages').findOneAndDelete({name: req.body.name, order: req.body.order}, (err, result) => {
+      db.collection('messages').findOneAndDelete({_id: ObjectID(req.body._id)}, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })

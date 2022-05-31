@@ -21,3 +21,7 @@ img{
 .cashierContainer {
   margin-left: 30%;
 }
+
+.hide {
+  display: none;
+}
