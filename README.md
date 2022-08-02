@@ -1,7 +1,7 @@
 # Pizza Time!
 Cowabunga dudes! It's Pizza time! Signup in order to make a delicious order! There's cheese, pepporoni and vegan options!
 
-**Link to project:** https://cydvilla.github.io/todo-list/
+**Link to project:** https://pizzahh-time.herokuapp.com/
 
 ![alt tag](tmnt.gif)
 
