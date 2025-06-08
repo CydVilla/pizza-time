@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+    <title>Pizza Gallery | Pizza Time</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .tmnt-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <nav class="bg-gray-800 shadow-lg">
+      <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="/" class="tmnt-font text-2xl text-green-400">Pizza Time</a>
+        <div class="flex gap-6">
+          <a href="/" class="hover:text-green-400 transition-colors">Home</a>
+          <a href="/order" class="hover:text-green-400 transition-colors">Pizza Gallery</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="tmnt-font text-3xl text-green-400 mb-8 text-center">Choose Your Pizza</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div onclick="showPizza('Cheese')" class="cursor-pointer bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center hover:bg-green-900 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="Cheese Pizza" class="w-32 h-32 object-cover rounded-full mb-4">
+                    <span class="tmnt-font text-lg text-yellow-300">Cheese</span>
+                </div>
+                <div onclick="showPizza('Pepperoni')" class="cursor-pointer bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center hover:bg-green-900 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80" alt="Pepperoni Pizza" class="w-32 h-32 object-cover rounded-full mb-4">
+                    <span class="tmnt-font text-lg text-red-400">Pepperoni</span>
+                </div>
+                <div onclick="showPizza('Vegan')" class="cursor-pointer bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center hover:bg-green-900 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Vegan Pizza" class="w-32 h-32 object-cover rounded-full mb-4">
+                    <span class="tmnt-font text-lg text-green-400">Vegan</span>
+                </div>
+                <div onclick="showPizza('Supreme')" class="cursor-pointer bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center hover:bg-green-900 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Supreme Pizza" class="w-32 h-32 object-cover rounded-full mb-4">
+                    <span class="tmnt-font text-lg text-purple-400">Supreme</span>
+                </div>
+                <div onclick="showPizza('BBQ Chicken')" class="cursor-pointer bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center hover:bg-green-900 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1506354666786-959d6d497f1a?auto=format&fit=crop&w=400&q=80" alt="BBQ Chicken Pizza" class="w-32 h-32 object-cover rounded-full mb-4">
+                    <span class="tmnt-font text-lg text-pink-400">BBQ Chicken</span>
+                </div>
+                <div onclick="showPizza('Custom')" class="cursor-pointer bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center hover:bg-green-900 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Custom Pizza" class="w-32 h-32 object-cover rounded-full mb-4">
+                    <span class="tmnt-font text-lg text-blue-400">Custom</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="pizzaModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+        <div class="bg-gray-900 rounded-lg shadow-2xl p-8 max-w-lg w-full relative">
+            <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-400 hover:text-red-400 text-2xl"><i class="fa fa-times"></i></button>
+            <img id="modalImg" src="" alt="Pizza" class="w-40 h-40 object-cover rounded-full mx-auto mb-4">
+            <h3 id="modalTitle" class="tmnt-font text-2xl text-green-400 mb-2 text-center"></h3>
+            <div id="modalRecipe" class="text-gray-200 text-center"></div>
+        </div>
+    </div>
+    <script>
+        const pizzaData = {
+            'Cheese': {
+                img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80',
+                recipe: `<b>Classic Cheese Pizza</b><br>1. Preheat oven to 475°F (245°C).<br>2. Spread pizza sauce on dough.<br>3. Top with mozzarella cheese.<br>4. Bake 12-15 min.<br><a href='https://www.simplyrecipes.com/recipes/homemade_pizza/' target='_blank' class='text-green-400 underline'>Full Recipe</a>`
+            },
+            'Pepperoni': {
+                img: 'https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80',
+                recipe: `<b>Pepperoni Pizza</b><br>1. Preheat oven to 475°F (245°C).<br>2. Spread sauce, cheese, and pepperoni.<br>3. Bake 12-15 min.<br><a href='https://www.simplyrecipes.com/recipes/pepperoni_pizza/' target='_blank' class='text-green-400 underline'>Full Recipe</a>`
+            },
+            'Vegan': {
+                img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
+                recipe: `<b>Vegan Pizza</b><br>1. Use vegan dough and cheese.<br>2. Add tomato sauce and veggies.<br>3. Bake 12-15 min.<br><a href='https://simpleveganblog.com/vegan-pizza/' target='_blank' class='text-green-400 underline'>Full Recipe</a>`
+            },
+            'Supreme': {
+                img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
+                recipe: `<b>Supreme Pizza</b><br>1. Sauce, cheese, pepperoni, sausage, peppers, onions, olives.<br>2. Bake 12-15 min.<br><a href='https://www.simplyrecipes.com/recipes/supreme_pizza/' target='_blank' class='text-green-400 underline'>Full Recipe</a>`
+            },
+            'BBQ Chicken': {
+                img: 'https://images.unsplash.com/photo-1506354666786-959d6d497f1a?auto=format&fit=crop&w=400&q=80',
+                recipe: `<b>BBQ Chicken Pizza</b><br>1. BBQ sauce, cheese, cooked chicken, red onion, cilantro.<br>2. Bake 12-15 min.<br><a href='https://www.simplyrecipes.com/recipes/bbq_chicken_pizza/' target='_blank' class='text-green-400 underline'>Full Recipe</a>`
+            },
+            'Custom': {
+                img: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80',
+                recipe: `<b>Custom Pizza</b><br>1. Choose your favorite sauce, cheese, and toppings.<br>2. Bake 12-15 min.<br><a href='https://www.simplyrecipes.com/recipes/homemade_pizza/' target='_blank' class='text-green-400 underline'>Pizza Inspiration</a>`
+            }
+        };
+        function showPizza(type) {
+            const data = pizzaData[type];
+            document.getElementById('modalImg').src = data.img;
+            document.getElementById('modalTitle').textContent = type + ' Pizza';
+            document.getElementById('modalRecipe').innerHTML = data.recipe;
+            document.getElementById('pizzaModal').classList.remove('hidden');
+        }
+        function closeModal() {
+            document.getElementById('pizzaModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html> 

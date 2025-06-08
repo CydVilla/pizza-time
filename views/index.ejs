@@ -3,39 +3,165 @@
 
 <head>
   <title>Pizza Time</title>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    .tmnt-font {
+      font-family: 'Press Start 2P', cursive;
+    }
+    .fun-fact {
+      transition: all 0.3s ease;
+    }
+  </style>
 </head>
 
-<body>
-  <div class="container">
-
-    <div class="jumbotron text-center">
-      <h1>Pizza Time</h1>
-      <img src="img/tmnt.png" alt="Pizza-time Design">
-
-      <p>Login or Signup:</p>
-
-      <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
-      <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
-
-      <figure>
-        <figcaption>Cowabunga!</figcaption>
-        <audio
-            controls
-            src="/audio/tmnt.mp3">
-                Your browser does not support the
-                <code>audio</code> element.
-        </audio>
-    </figure>
-
+<body class="bg-gray-900 text-white min-h-screen">
+  <nav class="bg-gray-800 shadow-lg">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="/" class="tmnt-font text-2xl text-green-400">Pizza Time</a>
+      <div class="flex gap-6">
+        <a href="/" class="hover:text-green-400 transition-colors">Home</a>
+        <a href="/order" class="hover:text-green-400 transition-colors">Pizza Gallery</a>
+      </div>
     </div>
+  </nav>
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <h1 class="tmnt-font text-4xl md:text-6xl text-green-500 mb-4">Pizza Time</h1>
+        <img src="img/tmnt.png" alt="Pizza-time Design" class="mx-auto max-w-xs md:max-w-md mb-8">
+      </div>
 
+      <!-- Fun Facts Section -->
+      <div class="bg-gray-800 rounded-lg p-6 mb-8 shadow-lg">
+        <h2 class="tmnt-font text-2xl text-orange-500 mb-4">TMNT Fun Fact</h2>
+        <p id="funFact" class="text-lg mb-4">Loading...</p>
+        <button onclick="getNewFact()" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded transition-colors">
+          New Fact
+        </button>
+      </div>
 
+      <!-- Audio Player -->
+      <div class="mt-8 text-center">
+        <p class="tmnt-font text-xl text-purple-500 mb-4">Cowabunga!</p>
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg max-w-md mx-auto">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+                <i class="fa fa-music text-white text-xl"></i>
+              </div>
+              <div class="text-left">
+                <h3 class="tmnt-font text-sm text-purple-400">TMNT Theme</h3>
+                <p class="text-gray-400 text-sm">Original Soundtrack</p>
+              </div>
+            </div>
+            <button onclick="togglePlay()" class="bg-purple-500 hover:bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+              <i id="playIcon" class="fa fa-play"></i>
+            </button>
+          </div>
+          <audio id="tmntAudio" class="w-full" ontimeupdate="updateProgress()">
+            <source src="/audio/tmnt.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <div class="relative h-2 bg-gray-700 rounded-full mt-4">
+            <div id="progressBar" class="absolute h-full bg-purple-500 rounded-full" style="width: 0%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-400 mt-2">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pizza Order Form -->
+      <!-- (removed from homepage) -->
+    </div>
   </div>
 
-  
+  <script>
+    const tmntFacts = [
+      "The Teenage Mutant Ninja Turtles were originally created as a parody of popular comic book tropes.",
+      "The original TMNT comic was published in black and white in 1984 by Mirage Studios.",
+      "Each turtle's name is inspired by a famous Renaissance artist: Leonardo, Donatello, Michelangelo, and Raphael.",
+      "The turtles' favorite food is pizza, and they're known for saying 'Cowabunga!'",
+      "The TMNT franchise has spawned multiple TV series, movies, video games, and merchandise.",
+      "The original comic was much darker and more violent than the popular 1987 animated series.",
+      "Splinter was originally a human ninja master who was transformed into a rat in the original comics.",
+      "The turtles' signature weapons are: Leonardo's katanas, Donatello's bo staff, Michelangelo's nunchucks, and Raphael's sais.",
+      "The 1990 live-action TMNT movie was the highest-grossing independent film of that year.",
+      "The turtles' color-coded bandanas were introduced in the 1987 animated series to help viewers distinguish between them."
+    ];
+
+    function getNewFact() {
+      const factElement = document.getElementById('funFact');
+      const randomFact = tmntFacts[Math.floor(Math.random() * tmntFacts.length)];
+      factElement.style.opacity = '0';
+      setTimeout(() => {
+        factElement.textContent = randomFact;
+        factElement.style.opacity = '1';
+      }, 300);
+    }
+
+    // Load initial fact
+    getNewFact();
+
+    // Audio Player Controls
+    const audio = document.getElementById('tmntAudio');
+    const playIcon = document.getElementById('playIcon');
+    const progressBar = document.getElementById('progressBar');
+    const currentTimeSpan = document.getElementById('currentTime');
+    const durationSpan = document.getElementById('duration');
+
+    function togglePlay() {
+      if (audio.paused) {
+        audio.play();
+        playIcon.classList.remove('fa-play');
+        playIcon.classList.add('fa-pause');
+      } else {
+        audio.pause();
+        playIcon.classList.remove('fa-pause');
+        playIcon.classList.add('fa-play');
+      }
+    }
+
+    function updateProgress() {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      progressBar.style.width = percent + '%';
+      
+      // Update time displays
+      currentTimeSpan.textContent = formatTime(audio.currentTime);
+      durationSpan.textContent = formatTime(audio.duration);
+    }
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      seconds = Math.floor(seconds % 60);
+      return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    // Initialize audio player
+    audio.addEventListener('loadedmetadata', () => {
+      durationSpan.textContent = formatTime(audio.duration);
+    });
+
+    // Handle audio end
+    audio.addEventListener('ended', () => {
+      playIcon.classList.remove('fa-pause');
+      playIcon.classList.add('fa-play');
+      progressBar.style.width = '0%';
+      currentTimeSpan.textContent = '0:00';
+    });
+
+    // Pizza Order Form Success Message
+    document.getElementById('pizzaForm').addEventListener('submit', function(e) {
+      setTimeout(function() {
+        document.getElementById('orderSuccess').classList.remove('hidden');
+        document.getElementById('pizzaForm').reset();
+      }, 100);
+    });
+  </script>
 </body>
 
 </html>
