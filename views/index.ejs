@@ -6,14 +6,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <style>
-    .tmnt-font {
-      font-family: 'Press Start 2P', cursive;
-    }
-    .fun-fact {
-      transition: all 0.3s ease;
-    }
-  </style>
+  <link rel="stylesheet" href="/style.css">
 </head>
 
 <body class="bg-gray-900 text-white min-h-screen">
@@ -35,40 +28,40 @@
       </div>
 
       <!-- Fun Facts Section -->
-      <div class="bg-gray-800 rounded-lg p-6 mb-8 shadow-lg">
-        <h2 class="tmnt-font text-2xl text-orange-500 mb-4">TMNT Fun Fact</h2>
-        <p id="funFact" class="text-lg mb-4">Loading...</p>
-        <button onclick="getNewFact()" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded transition-colors">
+      <div class="card fade-in" style="margin-bottom: 2rem;">
+        <h2 class="tmnt-font text-2xl mb-4" style="color: var(--secondary-orange);">TMNT Fun Fact</h2>
+        <p id="funFact" class="fun-fact text-lg mb-4">Loading...</p>
+        <button onclick="getNewFact()" class="btn btn-primary">
           New Fact
         </button>
       </div>
 
       <!-- Audio Player -->
-      <div class="mt-8 text-center">
-        <p class="tmnt-font text-xl text-purple-500 mb-4">Cowabunga!</p>
-        <div class="bg-gray-800 rounded-lg p-6 shadow-lg max-w-md mx-auto">
+      <div class="mt-8 text-center fade-in">
+        <p class="tmnt-font text-xl mb-4" style="color: var(--accent-purple);">Cowabunga!</p>
+        <div class="audio-player max-w-md mx-auto">
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center">
-              <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+              <div class="audio-icon mr-4">
                 <i class="fa fa-music text-white text-xl"></i>
               </div>
               <div class="text-left">
-                <h3 class="tmnt-font text-sm text-purple-400">TMNT Theme</h3>
-                <p class="text-gray-400 text-sm">Original Soundtrack</p>
+                <h3 class="tmnt-font text-sm" style="color: var(--accent-purple-light);">TMNT Theme</h3>
+                <p style="color: var(--text-muted); font-size: 0.875rem;">Original Soundtrack</p>
               </div>
             </div>
-            <button onclick="togglePlay()" class="bg-purple-500 hover:bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors">
-              <i id="playIcon" class="fa fa-play"></i>
+            <button onclick="togglePlay()" class="play-button">
+              <i id="playIcon" class="fa fa-play text-white"></i>
             </button>
           </div>
           <audio id="tmntAudio" class="w-full" ontimeupdate="updateProgress()">
             <source src="/audio/tmnt.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
-          <div class="relative h-2 bg-gray-700 rounded-full mt-4">
-            <div id="progressBar" class="absolute h-full bg-purple-500 rounded-full" style="width: 0%"></div>
+          <div class="progress-bar-container">
+            <div id="progressBar" class="progress-bar" style="width: 0%"></div>
           </div>
-          <div class="flex justify-between text-xs text-gray-400 mt-2">
+          <div class="flex justify-between mt-2" style="font-size: 0.75rem; color: var(--text-muted);">
             <span id="currentTime">0:00</span>
             <span id="duration">0:00</span>
           </div>
