@@ -23,27 +23,27 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 <div onclick="showPizza('Cheese')" class="pizza-card flex flex-col items-center fade-in">
                     <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="Cheese Pizza" class="mb-4">
-                    <span class="tmnt-font text-lg" style="color: #fbbf24; position: relative; z-index: 1;">Cheese</span>
+                    <span class="tmnt-font text-lg" style="color: var(--pizza-cheese); position: relative; z-index: 1;">Cheese</span>
                 </div>
                 <div onclick="showPizza('Pepperoni')" class="pizza-card flex flex-col items-center fade-in" style="animation-delay: 0.1s;">
                     <img src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80" alt="Pepperoni Pizza" class="mb-4">
-                    <span class="tmnt-font text-lg" style="color: #f87171; position: relative; z-index: 1;">Pepperoni</span>
+                    <span class="tmnt-font text-lg" style="color: var(--pizza-pepperoni); position: relative; z-index: 1;">Pepperoni</span>
                 </div>
                 <div onclick="showPizza('Vegan')" class="pizza-card flex flex-col items-center fade-in" style="animation-delay: 0.2s;">
                     <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Vegan Pizza" class="mb-4">
-                    <span class="tmnt-font text-lg" style="color: var(--primary-green-light); position: relative; z-index: 1;">Vegan</span>
+                    <span class="tmnt-font text-lg" style="color: var(--pizza-vegan); position: relative; z-index: 1;">Vegan</span>
                 </div>
                 <div onclick="showPizza('Supreme')" class="pizza-card flex flex-col items-center fade-in" style="animation-delay: 0.3s;">
                     <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Supreme Pizza" class="mb-4">
-                    <span class="tmnt-font text-lg" style="color: var(--accent-purple-light); position: relative; z-index: 1;">Supreme</span>
+                    <span class="tmnt-font text-lg" style="color: var(--pizza-supreme); position: relative; z-index: 1;">Supreme</span>
                 </div>
                 <div onclick="showPizza('BBQ Chicken')" class="pizza-card flex flex-col items-center fade-in" style="animation-delay: 0.4s;">
                     <img src="https://images.unsplash.com/photo-1506354666786-959d6d497f1a?auto=format&fit=crop&w=400&q=80" alt="BBQ Chicken Pizza" class="mb-4">
-                    <span class="tmnt-font text-lg" style="color: #f9a8d4; position: relative; z-index: 1;">BBQ Chicken</span>
+                    <span class="tmnt-font text-lg" style="color: var(--pizza-bbq); position: relative; z-index: 1;">BBQ Chicken</span>
                 </div>
                 <div onclick="showPizza('Custom')" class="pizza-card flex flex-col items-center fade-in" style="animation-delay: 0.5s;">
                     <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Custom Pizza" class="mb-4">
-                    <span class="tmnt-font text-lg" style="color: #60a5fa; position: relative; z-index: 1;">Custom</span>
+                    <span class="tmnt-font text-lg" style="color: var(--pizza-custom); position: relative; z-index: 1;">Custom</span>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
     <!-- Modal -->
     <div id="pizzaModal" class="modal fixed inset-0 flex items-center justify-center z-50 hidden">
         <div class="modal-content p-8 max-w-lg w-full relative mx-4">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='var(--secondary-orange)'" onmouseout="this.style.color='var(--text-muted)'">
+            <button onclick="closeModal()" class="modal-close-btn absolute top-4 right-4 text-2xl">
                 <i class="fa fa-times"></i>
             </button>
             <img id="modalImg" src="" alt="Pizza" class="w-40 h-40 object-cover rounded-full mx-auto mb-4">
