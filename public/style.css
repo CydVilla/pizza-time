@@ -703,6 +703,9 @@ button:focus, a:focus {
 }
 
 /* Responsive Grid */
+/* Note: These utilities duplicate Tailwind CSS functionality.
+   They're included as fallbacks since external CDNs may be blocked.
+   If using Tailwind locally/via build process, these can be removed. */
 @media (min-width: 640px) {
   .sm\\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
