@@ -22,9 +22,9 @@
   <div class="container mx-auto px-4 py-8">
     <div class="max-w-4xl mx-auto">
       <!-- Header Section -->
-      <div class="text-center mb-12">
-        <h1 class="tmnt-font text-4xl md:text-6xl text-green-500 mb-4">Pizza Time</h1>
-        <img src="img/tmnt.png" alt="Pizza-time Design" class="mx-auto max-w-xs md:max-w-md mb-8">
+      <div class="text-center mb-12 fade-in">
+        <h1 class="tmnt-font gradient-text mb-4" style="font-size: clamp(2rem, 5vw, 3.75rem);">Pizza Time</h1>
+        <img src="img/tmnt.png" alt="Pizza-time Design" class="mx-auto mb-8" style="max-width: min(500px, 90%); border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); border: 3px solid var(--primary-green);">
       </div>
 
       <!-- Fun Facts Section -->
@@ -145,14 +145,6 @@
       playIcon.classList.add('fa-play');
       progressBar.style.width = '0%';
       currentTimeSpan.textContent = '0:00';
-    });
-
-    // Pizza Order Form Success Message
-    document.getElementById('pizzaForm').addEventListener('submit', function(e) {
-      setTimeout(function() {
-        document.getElementById('orderSuccess').classList.remove('hidden');
-        document.getElementById('pizzaForm').reset();
-      }, 100);
     });
   </script>
 </body>
